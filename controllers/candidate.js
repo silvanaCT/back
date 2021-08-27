@@ -59,7 +59,7 @@ const isDataValid = ({
     if (typeof state !== 'string') errorList.push({ message: `Invalid state: ${state}` })
     if (typeof number !== 'string') errorList.push({ message: `Invalid number: ${number}` })
     if ((typeof telephone1 !== 'string') || (telephone1.length > 10)) errorList.push({ message: `Invalid telephone1: ${telephone1}` })
-    if (telephone2 && ((typeof telephone2 !== 'string') || (telephone2 > 10))) errorList.push({ message: `Invalid telephone2: ${telephone2}` })
+    if (telephone2 && ((typeof telephone2 !== 'string') || (telephone2.length > 10))) errorList.push({ message: `Invalid telephone2: ${telephone2}` })
     if (typeof cellphoneNumber !== 'string' && cellphoneNumber < 10) errorList.push({ message: `Invalid cellphoneNumber ${cellphoneNumber}` })
     if (contactInfo && (typeof contactInfo !== 'string')) errorList.push({ message: `Invalid contactInfo: ${contactInfo}` })
     if (typeof email !== 'string') errorList.push({ message: `Invalid email: ${email}` })
