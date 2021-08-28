@@ -1,0 +1,124 @@
+---
+openapi: 3.0.0
+info:
+  title: JobsNet Gama Project API
+  description: API for registering job candidates to a database
+  contact:
+    email: silvanatrevizanuto33@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/silvana5/JobsNET/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://shrouded-dusk-91038.herokuapp.com
+  description: Main production server
+paths:
+  /candidate:
+    post:
+      summary: adds a candidate
+      description: Registers a candidate to the database
+      operationId: registerCandidate
+      requestBody:
+        description: Adds candidate to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Candidate'
+      responses:
+        "200":
+          description: Candidato registrado
+        "422":
+          description: Input inválido
+        "409":
+          description: Já existe um usuario cadastrado com esse CPF
+components:
+  schemas:
+    Candidate:
+      required:
+      - birthDate
+      - cellphoneNumber
+      - civilState
+      - cpf
+      - email
+      - fullName
+      - hasCar
+      - hasDriversLicence
+      - rg
+      - sex
+      - telephone1
+      type: object
+      properties:
+        fullName:
+          type: string
+          example: Amanda Faria
+        sex:
+          type: string
+          enum:
+          - m
+          - f
+          - nao informado
+        civilState:
+          type: string
+          enum:
+          - solteiro
+          - casado
+          - divorciado
+          - separado
+          - viuvo
+        telephone1:
+          type: string
+          example: "3659874521"
+        telephone2:
+          type: string
+          example: "3659874521"
+        cellphoneNumber:
+          type: string
+          example: "3659874521"
+        contactInfo:
+          type: string
+          example: Any additional info, could be anything
+        email:
+          type: string
+          example: email@email.com
+        rg:
+          type: string
+          example: "987987789"
+        cpf:
+          type: string
+          example: "32669887541"
+        hasCar:
+          type: boolean
+        hasDriversLicence:
+          type: boolean
+        birthDate:
+          type: string
+          format: date-time
+        adress:
+          $ref: '#/components/schemas/Adress'
+    Adress:
+      required:
+      - cep
+      - city
+      - neighborhood
+      - number
+      - state
+      - street
+      type: object
+      properties:
+        street:
+          type: string
+          example: Rua Agusto Martins
+        neighborhood:
+          type: string
+          example: Almirantes
+        city:
+          type: string
+          example: São Paulo
+        cep:
+          type: string
+          example: "85412201"
+        state:
+          type: string
+          example: São Paulo
+        number:
+          type: string
+          example: "32"
