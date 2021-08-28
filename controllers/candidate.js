@@ -12,7 +12,10 @@ exports.registerCandidate = async (req, res) => {
 
         const isCPFAlreadyRegistered = await Candidate.find({ cpf: req.body.cpf })
 
-        if (isCPFAlreadyRegistered) return res.status(422).json({ error: 'CPF já cadastrado', errorList })
+        if (isCPFAlreadyRegistered.length) {
+            console.log('Candidato encontrado com o mesmo CPF: ', isCPFAlreadyRegistered)
+            return res.status(422).json({ error: 'CPF já cadastrado', errorList })
+        }
 
         const candidate = new Candidate({ ...req.body })
    
