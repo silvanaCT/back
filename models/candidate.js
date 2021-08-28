@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const cadidateSchema = new Schema({
     fullName: { type: String, required: true },
     birthDate: { type: String, required: true },
-    sex: { type: String, enum: ['m', 'f'], required: true },
+    sex: { type: String, enum: ['m', 'f', 'nao informado'], required: true },
     civilState: { 
         type: String,
         enum: [
