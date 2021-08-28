@@ -7,8 +7,12 @@ exports.registerCandidate = async (req, res) => {
 
         if (!isValid) {
             console.log('Error list: ', errorList)
-            return res.json({ error: 'Invalid input', errorList })
+            return res.status(422).json({ error: 'Input inválido', errorList })
         }
+
+        const isCPFAlreadyRegistered = await Candidate.find({ cpf: req.body.cpf })
+
+        if (isCPFAlreadyRegistered) return res.status(422).json({ error: 'CPF já cadastrado', errorList })
 
         const candidate = new Candidate({ ...req.body })
    
